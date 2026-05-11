@@ -14,15 +14,16 @@ const limiter = rateLimit({
     message: "Too many requests, please try again later."
 })
 app.use(limiter);
+app.use(cors({
+    origin: "https://ai-interview-analyzer-rishi-dev-ai.vercel.app",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}))
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors({
-    origin:[
-        "https://ai-interview-analyzer-rishi-dev-ai.vercel.app"
-    ],
-    credentials: true
-}));
+
 
 
 /* require all routes here*/
